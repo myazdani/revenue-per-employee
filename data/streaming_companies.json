@@ -1,0 +1,692 @@
+{
+  "retrieved": "2026-10-28",
+  "note": "Supplemental primary-source streaming and media observations. Comparison records are separate from annual observations; carried, pro forma and mixed-date values must be visibly identified.",
+  "companies": [
+    {
+      "id": "skydance",
+      "name": "Skydance (Paramount + WBD)",
+      "shortName": "Skydance",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#517e81",
+      "employeeUnit": "employees",
+      "scopeNote": "Combined Skydance, including Paramount and all Warner Bros. Discovery. FY2025 pro forma revenue with combined year-end 2025 employee counts represents the 2026 merged group; it is not current 2026 headcount or reported 2026 RPE.",
+      "rows": [],
+      "comparisons": [
+        {
+          "viewYear": 2026,
+          "sourceYear": 2025,
+          "revenue": 66.132,
+          "headcount": 53100,
+          "rpe": 1.2454237288135592,
+          "kind": "estimate",
+          "comparisonType": "proforma",
+          "status": "FY2025 pro forma · 2026 group",
+          "fiscalYearEnd": "2025-12-31",
+          "headcountDate": "2025-12-31",
+          "approximateHeadcount": true,
+          "note": "FY2025 merger pro forma revenue: $29.394B Paramount Skydance + $37.296B WBD − $0.558B intercompany eliminations = $66.132B. Denominator: 17,600 + 35,500 regular full- and part-time employees at December 31, 2025. Excludes Paramount’s separately reported 3,600 project-based staff. Represents the group after the October 2026 merger, not current 2026 headcount or a reported 2026 annual result. Legacy Skydance and Discovery are already included.",
+          "sources": [
+            {
+              "label": "Skydance merger pro forma financial statements (FY2025 revenue)",
+              "url": "https://www.sec.gov/Archives/edgar/data/2041610/000110465926113913/tm2626659d7_ex99-2.htm"
+            },
+            {
+              "label": "Paramount Skydance FY2025 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/2041610/000204161026000011/psky-20251231.htm"
+            },
+            {
+              "label": "Warner Bros. Discovery FY2025 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1437107/000143710726000020/wbd-20251231.htm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tubi",
+      "name": "Tubi",
+      "shortName": "Tubi",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#8d784a",
+      "employeeUnit": "team members",
+      "scopeNote": "Tubi streaming service, a Fox subsidiary. Approximate comparison using FY2025 revenue and management’s 2026 team size; workforce scope and dates differ. Fox is separately shown as the consolidated parent, so these are overlapping business scopes.",
+      "rows": [],
+      "comparisons": [
+        {
+          "viewYear": 2026,
+          "sourceYear": 2025,
+          "revenue": 1.1,
+          "headcount": 700,
+          "rpe": 1.5714285714285714,
+          "kind": "estimate",
+          "comparisonType": "mixed",
+          "revenueFloor": true,
+          "approximateHeadcount": true,
+          "status": "FY2025 floor estimate · 2026 team",
+          "fiscalYearEnd": "2025-06-30",
+          "headcountDate": "2026 (management statement)",
+          "note": "Fox management said Tubi generated over $1.1B in FY2025 revenue. Tubi’s CEO described a team of about 700 in 2026. The displayed RPE uses the rounded $1.1B revenue floor and approximate team size from different dates; it is a reference estimate, not a strict lower bound or reported FY2026 actual. Bubble area uses the revenue floor. The team statement does not specify full-time, part-time or contractor boundaries.",
+          "sources": [
+            {
+              "label": "Fox FY2025 Q4 earnings call transcript (Tubi revenue over $1.1B)",
+              "url": "https://media.investor.foxcorporation.com/wp-content/uploads/2025/08/11153242/FOX-FY2025-Q4-and-Full-Year-Earnings-Call_Transcript_Q4_Final45.pdf"
+            },
+            {
+              "label": "Tubi CEO Anjali Sud: 700-person team (2026)",
+              "url": "https://www.linkedin.com/posts/anjalisud_thank-you-fast-company-for-recognizing-the-activity-7440410784595099649-Fhxj"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "disney",
+      "name": "Disney",
+      "shortName": "Disney",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#547ab3",
+      "employeeUnit": "employees",
+      "scopeNote": "Entire consolidated Walt Disney Company, including Entertainment, Sports and Experiences; not Disney+ or Hulu standalone. Approximate fiscal-year-end total employees including full-time, part-time and seasonal; not full-time equivalents.",
+      "rows": [
+        {
+          "year": 2019,
+          "revenue": 69.607,
+          "headcount": 223000,
+          "rpe": 0.3121390134529148,
+          "status": "Reported · FY2019",
+          "kind": "reported",
+          "fiscalYearEnd": "2019-09-28",
+          "headcountDate": "2019-09-28",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs. Revenue is the revised FY2019 comparative $69.607B in the FY2020 report; original FY2019 revenue was $69.570B.",
+          "sources": [
+            {
+              "label": "Disney FY2019 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2019/ar/2019-Annual-Report-1.pdf"
+            },
+            {
+              "label": "FY2020 annual report: revised FY2019 revenue",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2020/ar/2020-Annual-Report-1.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2020,
+          "revenue": 65.388,
+          "headcount": 203000,
+          "rpe": 0.3221083743842365,
+          "status": "Reported · FY2020",
+          "kind": "reported",
+          "fiscalYearEnd": "2020-10-03",
+          "headcountDate": "2020-10-03",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs.",
+          "sources": [
+            {
+              "label": "Disney FY2020 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2020/ar/2020-Annual-Report-1.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "revenue": 67.418,
+          "headcount": 190000,
+          "rpe": 0.35483157894736844,
+          "status": "Reported · FY2021",
+          "kind": "reported",
+          "fiscalYearEnd": "2021-10-02",
+          "headcountDate": "2021-10-02",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs.",
+          "sources": [
+            {
+              "label": "Disney FY2021 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2021/ar/2021-Annual-Report-2.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2022,
+          "revenue": 82.722,
+          "headcount": 220000,
+          "rpe": 0.3760090909090909,
+          "status": "Reported · FY2022",
+          "kind": "reported",
+          "fiscalYearEnd": "2022-10-01",
+          "headcountDate": "2022-10-01",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs.",
+          "sources": [
+            {
+              "label": "Disney FY2022 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2022/ar/2022-Annual-Report-1.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "revenue": 88.898,
+          "headcount": 225000,
+          "rpe": 0.39510222222222224,
+          "status": "Reported · FY2023",
+          "kind": "reported",
+          "fiscalYearEnd": "2023-09-30",
+          "headcountDate": "2023-09-30",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs.",
+          "sources": [
+            {
+              "label": "Disney FY2023 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2023/ar/2023-Annual-Report.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "revenue": 91.361,
+          "headcount": 233000,
+          "rpe": 0.3921072961373391,
+          "status": "Reported · FY2024",
+          "kind": "reported",
+          "fiscalYearEnd": "2024-09-28",
+          "headcountDate": "2024-09-28",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs.",
+          "sources": [
+            {
+              "label": "Disney FY2024 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2024/ar/2024-Annual-Report-1.pdf"
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "revenue": 94.425,
+          "headcount": 231000,
+          "rpe": 0.4087662337662338,
+          "status": "Reported · FY2025",
+          "kind": "reported",
+          "fiscalYearEnd": "2025-09-27",
+          "headcountDate": "2025-09-27",
+          "approximateHeadcount": true,
+          "note": "Consolidated Disney, including parks, studios, sports, Disney+ and Hulu. Approximate year-end headcount includes full-time, part-time and seasonal employees; not FTEs. FY2025 workforce was 76% full-time, 16% part-time and 8% seasonal. Star India was deconsolidated November 14, 2024, affecting the FY2025 business scope.",
+          "sources": [
+            {
+              "label": "Disney FY2025 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2025/ar/2025-Annual-Report.pdf"
+            }
+          ]
+        }
+      ],
+      "comparisons": [
+        {
+          "viewYear": 2026,
+          "sourceYear": 2025,
+          "revenue": 94.425,
+          "headcount": 231000,
+          "rpe": 0.4087662337662338,
+          "kind": "reported",
+          "comparisonType": "carry",
+          "status": "FY2025 carried forward",
+          "fiscalYearEnd": "2025-09-27",
+          "headcountDate": "2025-09-27",
+          "note": "FY2025 values shown in 2026; not a FY2026 observation. Consolidated Disney; includes parks and seasonal workers. Star India deconsolidation affects the historical scope.",
+          "sources": [
+            {
+              "label": "Disney FY2025 annual report",
+              "url": "https://s206.q4cdn.com/979796730/files/doc_financials/2025/ar/2025-Annual-Report.pdf"
+            }
+          ],
+          "approximateHeadcount": true
+        }
+      ]
+    },
+    {
+      "id": "comcast",
+      "name": "Comcast",
+      "shortName": "Comcast",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#567f65",
+      "employeeUnit": "FTEs",
+      "scopeNote": "Entire consolidated Comcast Corporation including broadband, Sky, media, studios and theme parks; not Peacock standalone. Approximate year-end full-time and part-time employees calculated on a full-time-equivalent basis (FTE), not raw headcount. Freelance and temporary employees are also used in business, not quantified in denominator.",
+      "rows": [
+        {
+          "year": 2019,
+          "revenue": 108.942,
+          "headcount": 190000,
+          "rpe": 0.5733789473684211,
+          "status": "Reported · FY2019 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2019-12-31",
+          "headcountDate": "2019-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2019 annual report",
+              "url": "https://www.cmcsa.com/static-files/d3de7993-a16b-42bf-bebd-a45b938dcbfc"
+            }
+          ]
+        },
+        {
+          "year": 2020,
+          "revenue": 103.564,
+          "headcount": 168000,
+          "rpe": 0.616452380952381,
+          "status": "Reported · FY2020 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2020-12-31",
+          "headcountDate": "2020-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2020 annual report",
+              "url": "https://www.cmcsa.com/static-files/0ff6a41f-c1ff-4c25-b07e-4ec8424907cf"
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "revenue": 116.385,
+          "headcount": 189000,
+          "rpe": 0.6157936507936508,
+          "status": "Reported · FY2021 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2021-12-31",
+          "headcountDate": "2021-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2021 annual report",
+              "url": "https://www.cmcsa.com/static-files/8887f574-dfa9-4480-8c8b-ed7771f7ce44"
+            }
+          ]
+        },
+        {
+          "year": 2022,
+          "revenue": 121.427,
+          "headcount": 186000,
+          "rpe": 0.6528333333333334,
+          "status": "Reported · FY2022 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2022-12-31",
+          "headcountDate": "2022-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2022 annual report",
+              "url": "https://www.cmcsa.com/static-files/156da323-653e-4cc6-9bb4-d239937e9d2f"
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "revenue": 121.572,
+          "headcount": 186000,
+          "rpe": 0.6536129032258065,
+          "status": "Reported · FY2023 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2023-12-31",
+          "headcountDate": "2023-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2023 annual report",
+              "url": "https://www.cmcsa.com/static-files/fabc4151-d6cd-4480-bf15-43a5dfd96290"
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "revenue": 123.731,
+          "headcount": 182000,
+          "rpe": 0.6798406593406593,
+          "status": "Reported · FY2024 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2024-12-31",
+          "headcountDate": "2024-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here.",
+          "sources": [
+            {
+              "label": "Comcast FY2024 annual report",
+              "url": "https://www.cmcsa.com/static-files/f353e849-8ebe-449c-a6ae-9d769b06eaa9"
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "revenue": 123.707,
+          "headcount": 179000,
+          "rpe": 0.6911005586592178,
+          "status": "Reported · FY2025 · FTE basis",
+          "kind": "reported",
+          "fiscalYearEnd": "2025-12-31",
+          "headcountDate": "2025-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Comcast, including broadband, Sky, NBCUniversal and Peacock. Denominator is full-time equivalents, not raw employee headcount. Freelance and temporary workers are also used but not separately quantified here. Includes Versant businesses that spun off on January 2, 2026; this is the pre-spin FY2025 scope.",
+          "sources": [
+            {
+              "label": "Comcast FY2025 annual report",
+              "url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026004994/cmcsa-20251231.htm"
+            }
+          ]
+        }
+      ],
+      "comparisons": [
+        {
+          "viewYear": 2026,
+          "sourceYear": 2025,
+          "revenue": 123.707,
+          "headcount": 179000,
+          "rpe": 0.6911005586592178,
+          "kind": "reported",
+          "comparisonType": "carry",
+          "status": "FY2025 carried forward",
+          "fiscalYearEnd": "2025-12-31",
+          "headcountDate": "2025-12-31",
+          "note": "FY2025 values shown in 2026; not a FY2026 observation. Consolidated Comcast on an FTE basis. Includes Versant before its January 2, 2026 spin-off; not the current post-spin perimeter.",
+          "sources": [
+            {
+              "label": "Comcast FY2025 annual report",
+              "url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026004994/cmcsa-20251231.htm"
+            }
+          ],
+          "approximateHeadcount": true
+        }
+      ]
+    },
+    {
+      "id": "fox",
+      "name": "Fox",
+      "shortName": "Fox",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#a06c4e",
+      "employeeUnit": "full-time employees",
+      "scopeNote": "Entire consolidated Fox, not Tubi alone. Includes news, sports, broadcast, production, Tubi, and other businesses. Approximate full-time employees at June 30 fiscal year end. Freelance and temporary production/broadcast support workers employed in addition, not counted in this denominator. Fox includes Tubi; the Tubi comparison is a nested business and must not be added to Fox totals.",
+      "rows": [
+        {
+          "year": 2023,
+          "revenue": 14.913,
+          "headcount": 10400,
+          "rpe": 1.4339423076923077,
+          "status": "Reported · FY2023 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2023-06-30",
+          "headcountDate": "2023-06-30",
+          "approximateHeadcount": true,
+          "note": "Consolidated Fox, including Tubi. Denominator is approximate full-time employees; additional freelance and temporary production workers are not included. The announced Roku acquisition had not closed as of October 28, 2026; Roku remains separate.",
+          "sources": [
+            {
+              "label": "Fox FY2023 Form 10-K",
+              "url": "https://www.sec.gov/Archives/edgar/data/1754301/000162828023029065/fox-20230630.htm"
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "revenue": 13.98,
+          "headcount": 10200,
+          "rpe": 1.3705882352941177,
+          "status": "Reported · FY2024 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2024-06-30",
+          "headcountDate": "2024-06-30",
+          "approximateHeadcount": true,
+          "note": "Consolidated Fox, including Tubi. Denominator is approximate full-time employees; additional freelance and temporary production workers are not included. The announced Roku acquisition had not closed as of October 28, 2026; Roku remains separate.",
+          "sources": [
+            {
+              "label": "Fox FY2024 Form 10-K",
+              "url": "https://www.sec.gov/Archives/edgar/data/1754301/000162828024036123/fox-20240630.htm"
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "revenue": 16.3,
+          "headcount": 10400,
+          "rpe": 1.5673076923076923,
+          "status": "Reported · FY2025 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2025-06-30",
+          "headcountDate": "2025-06-30",
+          "approximateHeadcount": true,
+          "note": "Consolidated Fox, including Tubi. Denominator is approximate full-time employees; additional freelance and temporary production workers are not included. The announced Roku acquisition had not closed as of October 28, 2026; Roku remains separate.",
+          "sources": [
+            {
+              "label": "Fox FY2025 Form 10-K",
+              "url": "https://www.sec.gov/Archives/edgar/data/1754301/000162828025038077/fox-20250630.htm"
+            }
+          ]
+        },
+        {
+          "year": 2026,
+          "revenue": 17.126,
+          "headcount": 10550,
+          "rpe": 1.6233175355450238,
+          "status": "Reported · FY2026 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2026-06-30",
+          "headcountDate": "2026-06-30",
+          "approximateHeadcount": true,
+          "note": "Consolidated Fox, including Tubi. Denominator is approximate full-time employees; additional freelance and temporary production workers are not included. The announced Roku acquisition had not closed as of October 28, 2026; Roku remains separate.",
+          "sources": [
+            {
+              "label": "Fox FY2026 Form 10-K",
+              "url": "https://www.sec.gov/Archives/edgar/data/1754301/000162828026053960/fox-20260630.htm"
+            }
+          ]
+        }
+      ],
+      "comparisons": []
+    },
+    {
+      "id": "roku",
+      "name": "Roku",
+      "shortName": "Roku",
+      "group": "Streaming & media",
+      "cohort": "Streaming & media",
+      "streaming": true,
+      "supplemental": true,
+      "featured": true,
+      "color": "#7e679c",
+      "employeeUnit": "full-time employees",
+      "scopeNote": "Consolidated Roku Inc., including Platform and Devices; not The Roku Channel alone. Approximately full-time employees at December 31 of each fiscal year; not FTEs and excludes part-time/temporary staff.",
+      "rows": [
+        {
+          "year": 2019,
+          "revenue": 1.128921,
+          "headcount": 1650,
+          "rpe": 0.6841945454545455,
+          "status": "Reported · FY2019 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2019-12-31",
+          "headcountDate": "2019-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2019 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000156459020007916/roku-10k_20191231.htm"
+            },
+            {
+              "label": "Roku Form 10-K comparative consolidated revenues",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843922000010/roku-20211231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2020,
+          "revenue": 1.778388,
+          "headcount": 1925,
+          "rpe": 0.9238379220779221,
+          "status": "Reported · FY2020 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2020-12-31",
+          "headcountDate": "2020-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2020 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000156459021009021/roku-10k_20201231.htm"
+            },
+            {
+              "label": "Roku Form 10-K comparative consolidated revenues",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843922000010/roku-20211231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2021,
+          "revenue": 2.764584,
+          "headcount": 3000,
+          "rpe": 0.9215280000000001,
+          "status": "Reported · FY2021 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2021-12-31",
+          "headcountDate": "2021-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2021 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843922000010/roku-20211231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2022,
+          "revenue": 3.126534,
+          "headcount": 3600,
+          "rpe": 0.8684816666666667,
+          "status": "Reported · FY2022 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2022-12-31",
+          "headcountDate": "2022-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2022 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843923000007/roku-20221231.htm"
+            },
+            {
+              "label": "Roku Form 10-K comparative consolidated revenues",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843924000011/roku-20231231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2023,
+          "revenue": 3.484619,
+          "headcount": 3150,
+          "rpe": 1.106228253968254,
+          "status": "Reported · FY2023 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2023-12-31",
+          "headcountDate": "2023-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2023 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843924000011/roku-20231231.htm"
+            },
+            {
+              "label": "Roku Form 10-K comparative consolidated revenues",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000162828026008114/roku-20251231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2024,
+          "revenue": 4.112898,
+          "headcount": 3340,
+          "rpe": 1.2314065868263473,
+          "status": "Reported · FY2024 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2024-12-31",
+          "headcountDate": "2024-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions.",
+          "sources": [
+            {
+              "label": "Roku FY2024 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000142843925000013/roku-20241231.htm"
+            },
+            {
+              "label": "Roku Form 10-K comparative consolidated revenues",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000162828026008114/roku-20251231.htm"
+            }
+          ]
+        },
+        {
+          "year": 2025,
+          "revenue": 4.737251,
+          "headcount": 3600,
+          "rpe": 1.3159030555555553,
+          "status": "Reported · FY2025 · full-time staff",
+          "kind": "reported",
+          "fiscalYearEnd": "2025-12-31",
+          "headcountDate": "2025-12-31",
+          "approximateHeadcount": true,
+          "note": "Consolidated Roku, including platform and devices, not The Roku Channel alone. Approximate full-time headcount. Annual reported scope can change with acquisitions. FY2025 includes the Frndly TV acquisition.",
+          "sources": [
+            {
+              "label": "Roku FY2025 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000162828026008114/roku-20251231.htm"
+            }
+          ]
+        }
+      ],
+      "comparisons": [
+        {
+          "viewYear": 2026,
+          "sourceYear": 2025,
+          "revenue": 4.737251,
+          "headcount": 3600,
+          "rpe": 1.3159030555555553,
+          "kind": "reported",
+          "comparisonType": "carry",
+          "status": "FY2025 carried forward",
+          "fiscalYearEnd": "2025-12-31",
+          "headcountDate": "2025-12-31",
+          "note": "FY2025 values shown in 2026; not a FY2026 observation. Consolidated Roku with approximate full-time headcount. Its announced acquisition by Fox remained pending as of October 28, 2026; keep the companies separate.",
+          "sources": [
+            {
+              "label": "Roku FY2025 Form 10-K (employee count)",
+              "url": "https://www.sec.gov/Archives/edgar/data/1428439/000162828026008114/roku-20251231.htm"
+            }
+          ],
+          "approximateHeadcount": true
+        }
+      ]
+    }
+  ]
+}

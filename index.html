@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="Explore revenue per employee across technology, streaming, and media companies. Control time, compare company scale, and inspect the sources behind each estimate.">
+  <title>Revenue per employee</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%231b292c'/%3E%3Ccircle cx='14' cy='25' r='4' fill='%23d0a13f'/%3E%3Ccircle cx='26' cy='14' r='7' fill='%23c77a55'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./data/data.js"></script>
+  <script defer src="./model.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#explore">Skip to the interactive chart</a>
+<div class="page">
+  <header class="masthead">
+    <nav aria-label="Page navigation"><a href="#methodology">How to read it</a><a href="https://www.derrickongchin.com/analysis/ai-efficiency-era" target="_blank" rel="noopener noreferrer">Original analysis <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Revenue per employee</h1>
+      <p class="dek">Explore revenue, headcount, and company scale over time.</p>
+      <div class="intro-bottom"><p class="dataset-line" id="dataset-line">57 COMPANIES <span>·</span> 2019–2026 <span>·</span> TECH, STREAMING &amp; MEDIA</p><p class="credit">Based on research by <a href="https://www.derrickongchin.com/analysis/ai-efficiency-era" target="_blank" rel="noopener noreferrer">Derrick Ongchin ↗</a></p></div>
+    </section>
+
+    <section id="explore" aria-label="Explore company efficiency">
+      <div class="filter-bar">
+        <div class="cohort-tabs" role="group" aria-label="Company cohort">
+          <button class="cohort active" data-cohort="All companies" aria-pressed="true">All companies <span id="company-count">57</span></button>
+          <button class="cohort" data-cohort="Streaming & media" aria-pressed="false">Streaming &amp; media</button>
+          <button class="cohort" data-cohort="AI-native" aria-pressed="false">AI-native</button>
+          <button class="cohort" data-cohort="Big Tech" aria-pressed="false">Big Tech</button>
+          <button class="cohort" data-cohort="Restructurers" aria-pressed="false">Restructurers</button>
+          <button class="cohort" data-cohort="Platforms" aria-pressed="false">Platforms</button>
+          <button class="cohort" data-cohort="Software & infrastructure" aria-pressed="false">Software + infrastructure</button>
+        </div>
+      </div>
+      <div class="explorer">
+        <div class="chart-column">
+          <div class="chart-heading">
+            <div><h2 id="era-title">AI EFFICIENCY ERA</h2><p id="chart-subtitle">51 companies in view · annual source data</p></div>
+            <div class="year-block"><div id="year-display">2026<span>E</span></div><div id="year-basis">Reported + estimates + projections</div></div>
+          </div>
+          <div class="chart-toolbar">
+            <div class="chart-switches"><label><input id="trails-toggle" type="checkbox" checked> Historical trails</label><label><input id="labels-toggle" type="checkbox" checked> Labels</label></div>
+            <button id="export-chart" class="text-button">Export PNG <span aria-hidden="true">↓</span></button>
+          </div>
+          <div id="chart-wrap" class="chart-wrap">
+            <svg id="frontier" role="img" aria-labelledby="chart-title chart-description"><title id="chart-title">Revenue per employee versus headcount</title><desc id="chart-description">Bubble chart with employee count on a logarithmic horizontal axis and revenue per employee on the vertical axis. Bubble area is proportional to revenue. Use the company selector for accessible detailed values.</desc></svg>
+            <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+            <p id="chart-empty" class="chart-empty" hidden>No observations for this year and filter.</p>
+          </div>
+          <div class="chart-legend"><div><span class="legend-bubbles" aria-hidden="true"><i></i><i></i><i></i></span> Bubble area = revenue</div><div><span class="legend-trail" aria-hidden="true"></span> Trails = earlier annual observations</div></div>
+
+          <div class="time-controller" aria-label="Time controls">
+            <div class="time-top"><div><span class="eyebrow small">TRAVEL THROUGH TIME</span><p id="time-description">Drag the slider or press play to follow the shift.</p></div><div class="play-tools"><label class="speed-label">Speed <select id="play-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="play-button" class="play-button" aria-label="Play timeline"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">Play timeline</span></button></div></div>
+            <div class="slider-row"><button id="prev-year" class="step-button" aria-label="Previous year">←</button><div class="slider-inner"><label class="sr-only" for="year-slider">Chart year</label><input id="year-slider" type="range" min="2019" max="2026" value="2026" step="1" aria-valuetext="2026, includes projections"><div id="year-ticks" class="year-ticks"></div></div><button id="next-year" class="step-button" aria-label="Next year">→</button></div>
+          </div>
+
+          <div class="basis-row"><label for="basis-select">2026 AI-lab figures</label><select id="basis-select"><option value="annual">Annual source dataset</option><option value="reference">Match reference annotations</option></select><a href="#reference-note" aria-label="About the two 2026 data views">About these views ↗</a></div>
+          <div id="basis-note" class="basis-note">2026E includes reported fiscal years as well as estimates and projections. Each company’s exact source status is preserved.</div>
+        </div>
+
+        <aside class="company-panel" aria-label="Selected company detail">
+          <div class="panel-top"><span class="eyebrow small">FOLLOW A COMPANY</span><button id="clear-selection" class="text-button" title="Reset company selection">Reset</button></div>
+          <label class="sr-only" for="company-select">Select a company</label><select id="company-select"></select>
+          <div class="detail-head"><div class="company-title"><span id="company-color" class="color-dot"></span><h2 id="company-name">Meta</h2></div><p id="company-group">Efficiency-era Big Tech</p></div>
+          <div id="detail-content">
+            <div class="primary-metric"><span class="metric-label" id="detail-metric-label">REVENUE PER EMPLOYEE</span><div id="detail-rpe">$3.29<span>M</span></div><p id="detail-status" class="status-badge">Projection · 2026</p></div>
+            <dl class="detail-metrics"><div><dt id="revenue-label">Revenue</dt><dd id="detail-revenue">$220B</dd></div><div><dt id="employee-label">Employees</dt><dd id="detail-headcount">66,775</dd></div></dl>
+            <p id="detail-basis" class="detail-basis"></p>
+            <div id="detail-sources" class="detail-sources"></div>
+            <div class="trend-section" id="trend-section"><div class="mini-heading"><h3>Revenue per employee</h3><span id="trend-years">2019–2026</span></div><svg id="company-trend" role="img" aria-label="Selected company revenue per employee history"></svg><p id="trend-note" class="trend-note">Dashed segments include estimates or projections.</p></div>
+            <div class="change-section" id="change-section"><div class="mini-heading"><h3 id="change-heading">Change since 2019</h3></div><dl class="change-metrics"><div><dt>Revenue</dt><dd id="change-revenue"></dd></div><div><dt>Employees</dt><dd id="change-headcount"></dd></div><div><dt>Rev. / employee</dt><dd id="change-rpe"></dd></div></dl></div>
+            <div class="events-section" id="events-section"><div class="mini-heading"><h3>Source annotations</h3><span id="event-year">2026</span></div><div id="company-events"></div></div>
+          </div>
+          <div id="detail-empty" class="detail-empty" hidden></div>
+          <p class="panel-help">Click a bubble or choose a company to inspect its path.</p>
+        </aside>
+      </div>
+
+      <section class="ranking-section" aria-labelledby="ranking-title">
+        <div class="section-heading"><div><h2 id="ranking-title">Ranking · <span id="ranking-year">2026E</span></h2></div><div class="ranking-controls"><button class="cohort" data-cohort="All companies" aria-pressed="true">All companies</button><button class="cohort" data-cohort="Streaming & media" aria-pressed="false">Streaming &amp; media</button><label><input id="reported-only" type="checkbox"> Source-reported only</label><button id="show-all" class="outline-button">Show all companies</button></div></div>
+        <p class="section-note" id="ranking-note">Ranking uses the annual source dataset. Estimates and projections are marked; source-reported figures are not independently audited here.</p>
+        <div id="ranking-grid" class="ranking-grid" role="list" aria-label="Company revenue per employee ranking"></div>
+        <p id="ranking-empty" class="empty-message" hidden>No matching annual observations for this year and filter.</p>
+      </section>
+    </section>
+
+    <section id="methodology" class="methodology" aria-labelledby="methodology-title">
+      <div class="method-title"><h2 id="methodology-title">Sources and methodology</h2><p>The original technology dataset is extended with company filings and explicitly dated streaming and media comparisons. Select a company to inspect its measurement basis and sources.</p><a href="https://www.derrickongchin.com/analysis/ai-efficiency-era" target="_blank" rel="noopener noreferrer" class="source-link">Read the original analysis ↗</a></div>
+      <div class="method-details">
+        <details open><summary>What the chart measures</summary><div><p><strong>Revenue per employee = revenue ÷ headcount.</strong> Move right to see more employees; move up to see more revenue per employee. Equal horizontal distances represent equal multiples of headcount. Filled circle area uses one revenue scale across every year and filter.</p><p>Annual revenue is paired with a point-in-time workforce count. Late-year cuts can raise the ratio mechanically. Contractor labor, outsourcing, compute spending, profitability, and product quality are not captured.</p></div></details>
+        <details><summary>What is reported, estimated, or projected?</summary><div><p>The original 400 observations preserve the CSV’s exact <em>Status</em> field. “Source-reported” means the author labels a row Actual; it does not mean this reproduction has independently audited it. Mixed Actual/Estimate rows are classified as estimates. The original 2026 dataset contains 13 source-reported rows, 2 estimates, and 36 projections. Added media observations link directly to their source filings.</p><p>The dataset mixes fiscal-year and calendar-year labels, private-company estimates, run rates, and some currency-converted revenues. Compare business models with care: product resale, marketplace transactions, software subscriptions, and AI services recognize revenue differently.</p></div></details>
+        <details id="streaming-note"><summary>Streaming and media: periods, company scope, and estimates</summary><div><p><strong>Disney, Comcast, Fox, and Roku use consolidated company figures.</strong> These are not standalone Disney+, Peacock, Tubi, or Roku Channel ratios. Netflix, Spotify, and the existing Amazon, Apple, and Alphabet observations are also available through the Streaming &amp; media filter. Tubi is included separately from its parent Fox; the rows are comparisons, not an additive market total.</p><p><strong>Skydance (Paramount + WBD)</strong> uses FY2025 merger pro forma revenue of $66.132B and combined year-end 2025 employees of about 53,100, giving about $1.25M per employee. It appears in the 2026 view as a comparison for the merged group, not a reported 2026 result. No predecessor history is spliced into a continuous merged-company series.</p><p><strong>Tubi</strong> uses the disclosed FY2025 revenue floor of $1.1B and a management-stated 2026 team of about 700, giving a rough $1.57M comparison. Its bubble uses the revenue floor. Dates and workforce definitions differ, so this is neither a filed annual RPE nor a strict bound on actual RPE.</p><p>Disney, Comcast, and Roku retain their FY2025 values in the 2026 view, visibly marked as carried forward. Comcast reports <strong>full-time equivalents (FTEs)</strong>; Fox and Roku report full-time employees. Disney includes full-time, part-time, and seasonal employees. Comcast’s FY2025 scope includes Versant before its January 2026 separation. These definitions affect comparisons.</p><div class="download-links"><a href="./data/streaming_companies.json" download>Streaming &amp; media data + sources ↓</a></div></div></details>
+        <details id="reference-note"><summary>Why the screenshot and annual dataset differ</summary><div><p><strong>Annual source dataset</strong> preserves the downloaded CSV. For 2026 it gives OpenAI $25B revenue / 3,800 employees = $6.579M per employee, and Anthropic $30B / 5,000 = $6M. Both are labeled Estimate/run-rate.</p><p><strong>Match reference annotations</strong> changes only the final chart view. It holds OpenAI at its 2025 estimate ($13B / 2,300 = $5.652M) and shows Anthropic’s separately reported <strong>September 2026 TTM RPE of over $6.6M</strong> at approximately 5,300 employees. <a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" target="_blank" rel="noopener noreferrer">Anthropic’s October 26, 2026 S-1 ↗</a></p><p>The hollow Anthropic marker sits at the disclosed lower bound, has no revenue-size meaning, and is not connected to the annual series. The AI-lab ranking values and original CSV downloads retain the source values.</p></div></details>
+        <details><summary>Time, trails, and restructuring annotations</summary><div><p>Playback interpolates revenue and headcount only between neighboring annual rows, then recomputes their ratio. Those transitions are visual, not additional observations. Carried values remain still; Skydance and Tubi appear only at the 2026 comparison view, without an invented trail. OpenAI, Anthropic, and the added Fox series begin in 2023.</p><p>The 80 original source annotations have year labels only. Some describe workforce reductions; others describe business changes. They are reproduced as context, not verified layoff counts or evidence of AI causation. Display cohorts are editorial groupings; Streaming &amp; media also includes relevant companies from other cohorts. The source’s original Group remains visible in company details.</p></div></details>
+        <details><summary>Source files and reproducibility</summary><div><p>Original snapshot retrieved October 28, 2026: 51 companies, 400 company-year observations, 80 restructuring annotations. The six streaming and media additions bring the chart to 57 companies, 425 annual observations, and five separate dated comparisons. All ratios were checked against revenue and workforce figures; the original files remain available below.</p><p>The source page has a stale update label; this reproduction records its retrieval date. The original dataset gives general sourcing, not a filing URL for every row. Supplemental media records include their source URLs in the downloadable JSON.</p><div class="download-links"><a href="./data/revenue_per_employee_dataset.csv" download>Original revenue + headcount CSV ↓</a><a href="./data/layoff_markers.csv" download>Source annotations CSV ↓</a><a href="./data/streaming_companies.json" download>Streaming &amp; media JSON ↓</a></div><p class="hash-note">Original dataset SHA-256: <code>c5f8052d70f53d1c9e5469d843b01844c9cafa63eb4c8ce0ec9d622198b6edfb</code></p></div></details>
+      </div>
+    </section>
+  </main>
+  <footer><div class="footer-brand">Revenue per employee <span>/ 2019–2026</span></div><p>Original research: <a href="https://www.derrickongchin.com/analysis/ai-efficiency-era" target="_blank" rel="noopener noreferrer">Derrick Ongchin</a> · Additional company filings · October 28, 2026</p><a href="./data/streaming_companies.json" download>Streaming data ↓</a></footer>
+</div>
+<div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
