@@ -22,7 +22,7 @@
   .chart-heading p{font-size:11px;max-width:170px}
   #year-display{font-size:36px;letter-spacing:-1.2px}
   #year-basis{font-size:10px;max-width:160px;line-height:1.4}
-  .time-controller{order:1;padding:8px 10px;border-radius:10px;margin-bottom:10px}
+  .time-controller{order:4;padding:8px 10px;border-radius:10px;margin-bottom:10px}
   .time-top{align-items:center;gap:8px}
   .time-intro{display:none}
   .mobile-year-control{display:flex;align-items:center;gap:10px}
@@ -39,28 +39,28 @@
   .year-ticks{margin:-6px 0 0;justify-content:space-between}
   .year-ticks button{min-height:32px;min-width:44px;font-size:11px;line-height:32px}
   .year-ticks button:not(:first-child):not(:last-child){display:none}
-  #mobile-company-slot{display:block;order:2}
+  #mobile-company-slot{display:block;order:1}
   .company-picker{display:flex;align-items:center;gap:12px;margin-bottom:4px}
   .company-picker>label{position:static;width:auto;height:auto;clip:auto;overflow:visible;flex:0 0 auto;font-size:12px;color:var(--muted)}
   #company-select{margin:0;min-height:44px;font-size:16px;padding:8px 10px;min-width:0;flex:1;background:var(--paper)}
-  .chart-toolbar{order:3;min-height:48px;padding:0;gap:8px}
+  .chart-toolbar{order:2;min-height:48px;padding:0;gap:8px}
   .chart-switches{font-size:12px;gap:14px}
   .chart-switches label{min-height:44px}
   .chart-switches input{width:18px;height:18px}
   .desktop-labels-text{display:none}
   .phone-labels-text{display:inline}
   #export-chart{min-height:44px;font-size:12px}
-  .chart-wrap{order:4;min-width:0}
+  .chart-wrap{order:3;min-width:0}
   #frontier{overflow:hidden;touch-action:pan-y pinch-zoom}
-  .phone-chart-hint{display:block;order:5;font-size:11px;line-height:1.5;color:var(--muted);margin:3px 0 10px}
-  .mobile-selection{display:block;order:6;background:#eeece4;border:1px solid #dedfd5;border-radius:10px;padding:12px 14px;margin:0 0 10px}
+  .phone-chart-hint{display:block;order:6;font-size:11px;line-height:1.5;color:var(--muted);margin:3px 0 10px}
+  .mobile-selection{display:block;order:7;background:#eeece4;border:1px solid #dedfd5;border-radius:10px;padding:12px 14px;margin:0 0 10px}
   .mobile-selection-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;font-size:16px;line-height:1.4}
   #mobile-company-name{min-width:0;font-weight:650}
   #mobile-company-rpe{white-space:nowrap;font-variant-numeric:tabular-nums}
   .mobile-selection p{font-size:12px;line-height:1.55;margin:6px 0 0;color:#53646a}
   #mobile-company-status{font-size:11px;color:#64716a}
   #mobile-detail-toggle{min-height:44px;padding:9px 0 2px;font-size:12px;color:#365e66;text-decoration:underline;text-underline-offset:4px}
-  .chart-legend{order:7;font-size:10px;gap:10px;padding-bottom:10px}
+  .chart-legend{order:5;font-size:10px;gap:10px;padding-bottom:10px}
   .basis-row{order:8;padding-top:7px;gap:8px}
   .basis-row select{min-height:44px;font-size:16px;width:100%;padding-right:12px}
   .basis-row>label{font-size:12px}
