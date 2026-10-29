@@ -5,13 +5,13 @@
   const D = {
     ...window.EFFICIENCY_DATA,
     companies: window.EFFICIENCY_DATA.companies.map(c =>
-      c.id === 'tubi' ? { ...c, featured: false, color: '#b6bebb' } : c)
+      ['tubi', 'fox', 'roku'].includes(c.id) ? { ...c, featured: false, color: '#b6bebb' } : c)
   };
   const $ = id => document.getElementById(id);
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const PAPER = '#f7f5ef', INK = '#1b292d', MUTED = '#718086', LINE = '#e3e5de';
   const companyById = new Map(D.companies.map(c => [c.id, c]));
-  const cohorts = ['All companies', 'Streaming & media', 'AI-native', 'Big Tech', 'Restructurers', 'Platforms', 'Software & infrastructure'];
+  const cohorts = ['All companies', 'AI-native', 'Big Tech', 'Restructurers', 'Platforms', 'Software & infrastructure', 'Streaming & media'];
   const state = { year: 2026, cohort: 'All companies', selected: 'meta', trails: true, labels: true,
     basis: 'annual', playing: false, speed: 1, reportedOnly: false, showAll: false };
   let animationId = 0, resizeFrame = 0, toastTimer = 0, lastRankKey = '', lastSelectorCohort = '';
