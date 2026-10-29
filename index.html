@@ -8,7 +8,7 @@
   <title>Revenue per employee</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%231b292c'/%3E%3Ccircle cx='14' cy='25' r='4' fill='%23d0a13f'/%3E%3Ccircle cx='26' cy='14' r='7' fill='%23c77a55'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./mobile.css?v=20261028-mobile-1">
+  <link rel="stylesheet" href="./mobile.css?v=20261028-layout-2">
   <script defer src="./data/data.js"></script>
   <script defer src="./model.js"></script>
   <script defer src="./app.js?v=20261028-mobile-1"></script>
@@ -30,12 +30,12 @@
       <div class="filter-bar">
         <div class="cohort-tabs" role="group" aria-label="Company cohort">
           <button class="cohort active" data-cohort="All companies" aria-pressed="true">All companies <span id="company-count">57</span></button>
-          <button class="cohort" data-cohort="Streaming & media" aria-pressed="false">Streaming &amp; media</button>
           <button class="cohort" data-cohort="AI-native" aria-pressed="false">AI-native</button>
           <button class="cohort" data-cohort="Big Tech" aria-pressed="false">Big Tech</button>
           <button class="cohort" data-cohort="Restructurers" aria-pressed="false">Restructurers</button>
           <button class="cohort" data-cohort="Platforms" aria-pressed="false">Platforms</button>
           <button class="cohort" data-cohort="Software & infrastructure" aria-pressed="false">Software + infrastructure</button>
+          <button class="cohort" data-cohort="Streaming & media" aria-pressed="false">Streaming &amp; media</button>
         </div>
       </div>
       <div class="explorer">
@@ -54,6 +54,11 @@
             <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
             <p id="chart-empty" class="chart-empty" hidden>No observations for this year and filter.</p>
           </div>
+          <div class="time-controller" aria-label="Time controls">
+            <div class="time-top"><div class="mobile-year-control"><label for="mobile-year">Year</label><select id="mobile-year" aria-label="Choose chart year"></select></div><div class="time-intro"><span class="eyebrow small">TRAVEL THROUGH TIME</span><p id="time-description">Drag the slider or press play to follow the shift.</p></div><div class="play-tools"><label class="speed-label">Speed <select id="play-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="play-button" class="play-button" aria-label="Play timeline"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">Play timeline</span></button></div></div>
+            <div class="slider-row"><button id="prev-year" class="step-button" aria-label="Previous year">←</button><div class="slider-inner"><label class="sr-only" for="year-slider">Chart year</label><input id="year-slider" type="range" min="2019" max="2026" value="2026" step="1" aria-valuetext="2026, includes projections"><div id="year-ticks" class="year-ticks"></div></div><button id="next-year" class="step-button" aria-label="Next year">→</button></div>
+          </div>
+
           <div class="mobile-selection" id="mobile-summary" aria-label="Selected company summary">
             <div class="mobile-selection-heading"><strong id="mobile-company-name">Meta</strong><strong id="mobile-company-rpe"></strong></div>
             <p id="mobile-company-metrics"></p><p id="mobile-company-status"></p>
@@ -61,11 +66,6 @@
           </div>
           <p class="phone-chart-hint">Tap any bubble to inspect it. Key labels are kept close to their bubbles.</p>
           <div class="chart-legend"><div><span class="legend-bubbles" aria-hidden="true"><i></i><i></i><i></i></span> Bubble area = revenue</div><div><span class="legend-trail" aria-hidden="true"></span> Trails = earlier annual observations</div></div>
-
-          <div class="time-controller" aria-label="Time controls">
-            <div class="time-top"><div class="mobile-year-control"><label for="mobile-year">Year</label><select id="mobile-year" aria-label="Choose chart year"></select></div><div class="time-intro"><span class="eyebrow small">TRAVEL THROUGH TIME</span><p id="time-description">Drag the slider or press play to follow the shift.</p></div><div class="play-tools"><label class="speed-label">Speed <select id="play-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="play-button" class="play-button" aria-label="Play timeline"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">Play timeline</span></button></div></div>
-            <div class="slider-row"><button id="prev-year" class="step-button" aria-label="Previous year">←</button><div class="slider-inner"><label class="sr-only" for="year-slider">Chart year</label><input id="year-slider" type="range" min="2019" max="2026" value="2026" step="1" aria-valuetext="2026, includes projections"><div id="year-ticks" class="year-ticks"></div></div><button id="next-year" class="step-button" aria-label="Next year">→</button></div>
-          </div>
 
           <div class="basis-row"><label for="basis-select">2026 AI-lab figures</label><select id="basis-select"><option value="annual">Annual source dataset</option><option value="reference">Match reference annotations</option></select><a href="#reference-note" aria-label="About the two 2026 data views">About these views ↗</a></div>
           <div id="basis-note" class="basis-note">2026E includes reported fiscal years as well as estimates and projections. Each company’s exact source status is preserved.</div>
