@@ -155,29 +155,32 @@
     const svg = $('frontier'), width = exportSize?.width || Math.max(270, $('chart-wrap').clientWidth);
     const compact = !exportSize && (width < 530 || phoneLayout.matches);
     const height = exportSize?.height || (compact ? Math.min(470, Math.max(360, Math.round(width * 1.16))) : Math.min(670, Math.max(575, width * .73)));
-    const left = compact ? 41 : 62, right = compact ? 12 : 30, top = compact ? 24 : 14, bottom = compact ? 48 : 65;
+    const left = compact ? 57 : 70, right = compact ? 18 : 34, top = compact ? 42 : 18, bottom = compact ? 76 : 84;
     const pw = width - left - right, ph = height - top - bottom;
     const x = v => M.scaleX(v, left, pw), y = v => M.scaleY(v, top, ph);
     const maxRadius = compact ? 22 : 36;
+    // 50% larger axis text on both phone and desktop; margins reserve space for it.
+    const axisTickSize = compact ? 16.5 : 18;
+    const axisTitleSize = 16.5;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`); svg.setAttribute('width', width); svg.setAttribute('height', height);
     svg.replaceChildren(el('title', {id:'chart-title'}, `Revenue per employee versus headcount, ${isWhole(state.year) ? yearLabel(state.year) : 'annual transition'}`), el('desc', {id:'chart-description'}, 'Horizontal axis: workforce size, logarithmic scale from 200 to 2.5 million. Vertical axis: revenue per employee, zero to 9 million US dollars. Comcast uses full-time equivalents. Filled bubble area is proportional to revenue; Tubi uses its disclosed revenue floor. Choose a company from the adjacent selector for periods, definitions, and source links.'));
     const g = append(svg, 'g', {'aria-hidden':'true'});
     for (const tick of [0, 2, 4, 6, 8]) {
       append(g, 'line', { x1:left, x2:width-right, y1:y(tick), y2:y(tick), stroke:LINE, 'stroke-width':1 });
-      append(g, 'text', { x:left-12, y:y(tick)+4, 'text-anchor':'end', fill:MUTED, 'font-size':compact ? 11 : 12 }, '$' + tick + 'M');
+      append(g, 'text', { x:left-11, y:y(tick)+5, 'text-anchor':'end', fill:MUTED, 'font-size':axisTickSize }, '$' + tick + 'M');
     }
     const xticks = compact ? [1000, 10000, 100000, 1000000] : [300, 1000, 10000, 100000, 1000000];
     for (const tick of xticks) {
       append(g, 'line', {x1:x(tick), x2:x(tick), y1:top, y2:y(0), stroke:LINE, 'stroke-width':1, 'stroke-dasharray':'2 3'});
-      append(g, 'text', {x:x(tick), y:y(0)+23, 'text-anchor':'middle', fill:MUTED, 'font-size':compact ? 11 : 12}, headShort(tick));
+      append(g, 'text', {x:x(tick), y:y(0)+30, 'text-anchor':'middle', fill:MUTED, 'font-size':axisTickSize}, headShort(tick));
     }
     for (let decade = 100; decade <= 1000000; decade *= 10) for (let k=1;k<=9;k++) {
       const value = decade*k;
       if (value >= M.X_DOMAIN[0] && value <= M.X_DOMAIN[1]) append(g, 'line', {x1:x(value), x2:x(value), y1:y(0)+1, y2:y(0)+4, stroke:'#8b9590', 'stroke-width':.8});
     }
-    if (compact) append(g, 'text', {x:left, y:12, fill:'#46575e', 'font-size':11, 'font-weight':600}, 'Revenue per employee ($)');
-    else append(g, 'text', {x:14, y:top+ph/2, transform:`rotate(-90 14 ${top+ph/2})`, 'text-anchor':'middle', fill:'#46575e', 'font-size':11, 'font-weight':650, 'letter-spacing':'.4px'}, 'REVENUE PER EMPLOYEE');
-    append(g, 'text', {x:left+pw/2, y:height-9, 'text-anchor':'middle', fill:'#46575e', 'font-size':11, 'font-weight':600}, compact ? 'Employees · log scale' : 'TOTAL EMPLOYEES · LOG SCALE');
+    if (compact) append(g, 'text', {x:left, y:23, fill:'#46575e', 'font-size':axisTitleSize, 'font-weight':600}, 'Revenue per employee ($)');
+    else append(g, 'text', {x:17, y:top+ph/2, transform:`rotate(-90 17 ${top+ph/2})`, 'text-anchor':'middle', fill:'#46575e', 'font-size':axisTitleSize, 'font-weight':650, 'letter-spacing':'.4px'}, 'REVENUE PER EMPLOYEE');
+    append(g, 'text', {x:left+pw/2, y:height-12, 'text-anchor':'middle', fill:'#46575e', 'font-size':axisTitleSize, 'font-weight':600}, compact ? 'Employees · log scale' : 'TOTAL EMPLOYEES · LOG SCALE');
     const companies = visibleCompanies();
     const points = companies.map(c => M.plottedPoint(c, state.year, state.basis)).filter(Boolean);
     $('chart-empty').hidden = points.length > 0;
