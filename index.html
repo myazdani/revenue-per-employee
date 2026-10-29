@@ -8,9 +8,10 @@
   <title>Revenue per employee</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%231b292c'/%3E%3Ccircle cx='14' cy='25' r='4' fill='%23d0a13f'/%3E%3Ccircle cx='26' cy='14' r='7' fill='%23c77a55'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./mobile.css?v=20261028-mobile-1">
   <script defer src="./data/data.js"></script>
   <script defer src="./model.js"></script>
-  <script defer src="./app.js?v=20261028-display-3"></script>
+  <script defer src="./app.js?v=20261028-mobile-1"></script>
 </head>
 <body>
 <a class="skip-link" href="#explore">Skip to the interactive chart</a>
@@ -39,12 +40,13 @@
       </div>
       <div class="explorer">
         <div class="chart-column">
+          <div id="mobile-company-slot"></div>
           <div class="chart-heading">
             <div><p id="chart-subtitle">51 companies in view · annual source data</p></div>
             <div class="year-block"><div id="year-display">2026<span>E</span></div><div id="year-basis">Reported + estimates + projections</div></div>
           </div>
           <div class="chart-toolbar">
-            <div class="chart-switches"><label><input id="trails-toggle" type="checkbox" checked> Historical trails</label><label><input id="labels-toggle" type="checkbox" checked> Labels</label></div>
+            <div class="chart-switches"><label><input id="trails-toggle" type="checkbox" checked> Historical trails</label><label><input id="labels-toggle" type="checkbox" checked> <span class="desktop-labels-text">Labels</span><span class="phone-labels-text">Key labels</span></label></div>
             <button id="export-chart" class="text-button">Export PNG <span aria-hidden="true">↓</span></button>
           </div>
           <div id="chart-wrap" class="chart-wrap">
@@ -52,10 +54,16 @@
             <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
             <p id="chart-empty" class="chart-empty" hidden>No observations for this year and filter.</p>
           </div>
+          <div class="mobile-selection" id="mobile-summary" aria-label="Selected company summary">
+            <div class="mobile-selection-heading"><strong id="mobile-company-name">Meta</strong><strong id="mobile-company-rpe"></strong></div>
+            <p id="mobile-company-metrics"></p><p id="mobile-company-status"></p>
+            <button id="mobile-detail-toggle" aria-controls="company-panel" aria-expanded="false">Details &amp; sources ↓</button>
+          </div>
+          <p class="phone-chart-hint">Tap any bubble to inspect it. Key labels are kept close to their bubbles.</p>
           <div class="chart-legend"><div><span class="legend-bubbles" aria-hidden="true"><i></i><i></i><i></i></span> Bubble area = revenue</div><div><span class="legend-trail" aria-hidden="true"></span> Trails = earlier annual observations</div></div>
 
           <div class="time-controller" aria-label="Time controls">
-            <div class="time-top"><div><span class="eyebrow small">TRAVEL THROUGH TIME</span><p id="time-description">Drag the slider or press play to follow the shift.</p></div><div class="play-tools"><label class="speed-label">Speed <select id="play-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="play-button" class="play-button" aria-label="Play timeline"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">Play timeline</span></button></div></div>
+            <div class="time-top"><div class="mobile-year-control"><label for="mobile-year">Year</label><select id="mobile-year" aria-label="Choose chart year"></select></div><div class="time-intro"><span class="eyebrow small">TRAVEL THROUGH TIME</span><p id="time-description">Drag the slider or press play to follow the shift.</p></div><div class="play-tools"><label class="speed-label">Speed <select id="play-speed" aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><button id="play-button" class="play-button" aria-label="Play timeline"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">Play timeline</span></button></div></div>
             <div class="slider-row"><button id="prev-year" class="step-button" aria-label="Previous year">←</button><div class="slider-inner"><label class="sr-only" for="year-slider">Chart year</label><input id="year-slider" type="range" min="2019" max="2026" value="2026" step="1" aria-valuetext="2026, includes projections"><div id="year-ticks" class="year-ticks"></div></div><button id="next-year" class="step-button" aria-label="Next year">→</button></div>
           </div>
 
@@ -63,9 +71,9 @@
           <div id="basis-note" class="basis-note">2026E includes reported fiscal years as well as estimates and projections. Each company’s exact source status is preserved.</div>
         </div>
 
-        <aside class="company-panel" aria-label="Selected company detail">
+        <aside id="company-panel" class="company-panel" aria-label="Selected company detail">
           <div class="panel-top"><span class="eyebrow small">FOLLOW A COMPANY</span><button id="clear-selection" class="text-button" title="Reset company selection">Reset</button></div>
-          <label class="sr-only" for="company-select">Select a company</label><select id="company-select"></select>
+          <div id="desktop-company-slot"><div id="company-picker" class="company-picker"><label for="company-select">Company</label><select id="company-select"></select></div></div>
           <div class="detail-head"><div class="company-title"><span id="company-color" class="color-dot"></span><h2 id="company-name">Meta</h2></div><p id="company-group">Efficiency-era Big Tech</p></div>
           <div id="detail-content">
             <div class="primary-metric"><span class="metric-label" id="detail-metric-label">REVENUE PER EMPLOYEE</span><div id="detail-rpe">$3.29<span>M</span></div><p id="detail-status" class="status-badge">Projection · 2026</p></div>

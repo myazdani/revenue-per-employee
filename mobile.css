@@ -1,0 +1,102 @@
+/* Progressive phone layout; the desktop chart and all observations are preserved. */
+#mobile-company-slot,.mobile-year-control,.mobile-selection,.phone-chart-hint,.phone-labels-text{display:none}
+#desktop-company-slot{grid-column:1/-1;min-width:0}
+.company-picker>label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:700px){
+  html{scroll-padding-top:12px}
+  .page{padding:0 12px}
+  .masthead{height:44px}
+  nav{font-size:12px;gap:20px}
+  nav a{display:inline-flex;min-height:44px;align-items:center}
+  .intro{padding:22px 0 18px}
+  h1{font-size:34px!important;letter-spacing:-1.3px;line-height:1.08;margin-bottom:10px}
+  .dek{font-size:14px;line-height:1.5}
+  .intro-bottom{margin-top:12px}
+  .dataset-line{font-size:10px;line-height:1.6;letter-spacing:.25px}
+  .filter-bar{padding:6px 0}
+  .cohort-tabs{flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:thin;padding-bottom:2px}
+  .cohort-tabs .cohort{flex:0 0 auto;min-height:44px;padding:10px 13px;font-size:12px}
+  .explorer{padding-top:12px}
+  .chart-column{display:flex;flex-direction:column;min-width:0}
+  .chart-heading{order:0;min-height:54px;align-items:center;gap:8px;margin-bottom:10px}
+  .chart-heading p{font-size:11px;max-width:170px}
+  #year-display{font-size:36px;letter-spacing:-1.2px}
+  #year-basis{font-size:10px;max-width:160px;line-height:1.4}
+  .time-controller{order:1;padding:8px 10px;border-radius:10px;margin-bottom:10px}
+  .time-top{align-items:center;gap:8px}
+  .time-intro{display:none}
+  .mobile-year-control{display:flex;align-items:center;gap:10px}
+  .mobile-year-control label{font-size:12px;color:var(--muted)}
+  #mobile-year{min-height:44px;border:1px solid #cdd2c8;border-radius:6px;background:var(--paper);font-size:16px;padding:5px 8px;color:var(--ink);max-width:120px}
+  .play-tools{flex-direction:row;gap:0}
+  .play-button{min-height:44px;min-width:130px;font-size:12px;padding:10px 14px}
+  .slider-row{margin-top:3px;gap:7px;align-items:flex-start}
+  .step-button{height:44px;min-width:44px;font-size:21px;border-radius:6px}
+  .step-button:not(:disabled):hover{background:#e0e0d6}
+  #year-slider{height:44px}
+  #year-slider::-webkit-slider-thumb{width:22px;height:22px;margin-top:-9.5px;box-shadow:0 0 0 3px #eeece4}
+  #year-slider::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:var(--ink)}
+  .year-ticks{margin:-6px 0 0;justify-content:space-between}
+  .year-ticks button{min-height:32px;min-width:44px;font-size:11px;line-height:32px}
+  .year-ticks button:not(:first-child):not(:last-child){display:none}
+  #mobile-company-slot{display:block;order:2}
+  .company-picker{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .company-picker>label{position:static;width:auto;height:auto;clip:auto;overflow:visible;flex:0 0 auto;font-size:12px;color:var(--muted)}
+  #company-select{margin:0;min-height:44px;font-size:16px;padding:8px 10px;min-width:0;flex:1;background:var(--paper)}
+  .chart-toolbar{order:3;min-height:48px;padding:0;gap:8px}
+  .chart-switches{font-size:12px;gap:14px}
+  .chart-switches label{min-height:44px}
+  .chart-switches input{width:18px;height:18px}
+  .desktop-labels-text{display:none}
+  .phone-labels-text{display:inline}
+  #export-chart{min-height:44px;font-size:12px}
+  .chart-wrap{order:4;min-width:0}
+  #frontier{overflow:hidden;touch-action:pan-y pinch-zoom}
+  .phone-chart-hint{display:block;order:5;font-size:11px;line-height:1.5;color:var(--muted);margin:3px 0 10px}
+  .mobile-selection{display:block;order:6;background:#eeece4;border:1px solid #dedfd5;border-radius:10px;padding:12px 14px;margin:0 0 10px}
+  .mobile-selection-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;font-size:16px;line-height:1.4}
+  #mobile-company-name{min-width:0;font-weight:650}
+  #mobile-company-rpe{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .mobile-selection p{font-size:12px;line-height:1.55;margin:6px 0 0;color:#53646a}
+  #mobile-company-status{font-size:11px;color:#64716a}
+  #mobile-detail-toggle{min-height:44px;padding:9px 0 2px;font-size:12px;color:#365e66;text-decoration:underline;text-underline-offset:4px}
+  .chart-legend{order:7;font-size:10px;gap:10px;padding-bottom:10px}
+  .basis-row{order:8;padding-top:7px;gap:8px}
+  .basis-row select{min-height:44px;font-size:16px;width:100%;padding-right:12px}
+  .basis-row>label{font-size:12px}
+  .basis-row>a{font-size:11px;min-height:32px;display:flex;align-items:center}
+  .basis-note{order:9;font-size:11px;line-height:1.65;margin-top:0}
+  .company-panel{display:none;margin-top:18px;padding-top:18px;scroll-margin-top:12px}
+  .mobile-details-open .company-panel{display:grid}
+  .panel-top{grid-column:1/-1}
+  .panel-top .eyebrow{font-size:11px}
+  .panel-top .text-button{min-height:44px;min-width:44px;font-size:12px}
+  .detail-basis,.detail-sources,#company-events,.panel-help{font-size:12px;line-height:1.65}
+  .ranking-section{margin-top:22px;padding-top:20px}
+  .ranking-grid{grid-template-columns:1fr;gap:0}
+  .rank-row{min-height:64px;padding:13px 5px;gap:12px}
+  .rank-index{font-size:11px;width:20px;flex-basis:20px}
+  .rank-name{font-size:14px}
+  .rank-value{font-size:15px}
+  .rank-status{font-size:11px;line-height:1.5}
+  .rank-bar-track{height:4px}
+  .ranking-controls{gap:8px;align-items:center}
+  .ranking-controls .cohort,.outline-button{font-size:12px;min-height:44px;padding:10px 12px}
+  .ranking-controls label{font-size:12px;min-height:44px;display:flex;align-items:center}
+  .ranking-controls input{height:18px;width:18px}
+  .section-note{font-size:11px;line-height:1.65}
+  .method-details p,.method-title>p{font-size:12px}
+  .method-details summary{min-height:44px;font-size:13px}
+  .download-links>a{font-size:12px;min-height:36px}
+  footer{font-size:11px;line-height:1.6}
+  .footer-brand{font-size:11px}
+}
+@media(max-width:360px){
+  .page{padding:0 10px}
+  h1{font-size:31px!important}
+  .chart-switches{gap:8px;font-size:11px}
+  #export-chart{font-size:11px}
+  .mobile-year-control{gap:7px}
+  .play-button{min-width:113px;padding:10px;font-size:11px}
+  .mobile-selection-heading{font-size:14px}
+}

@@ -5,7 +5,7 @@
   const D = {
     ...window.EFFICIENCY_DATA,
     companies: window.EFFICIENCY_DATA.companies.map(c =>
-      ['tubi', 'fox', 'roku'].includes(c.id) ? { ...c, featured: false, color: '#b6bebb' } : c)
+      ['tubi', 'fox', 'roku', 'skydance'].includes(c.id) ? { ...c, featured: false, color: '#b6bebb' } : c)
   };
   const $ = id => document.getElementById(id);
   const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -16,6 +16,10 @@
     basis: 'annual', playing: false, speed: 1, reportedOnly: false, showAll: false };
   let animationId = 0, resizeFrame = 0, toastTimer = 0, lastRankKey = '', lastSelectorCohort = '';
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const phoneLayout = window.matchMedia('(max-width: 700px)');
+  let mobileDetailsOpen = false;
+  const labelMeasure = document.createElement('canvas').getContext('2d');
+  const labelWidths = new Map();
   const num = new Intl.NumberFormat('en-US');
   const dec = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
   const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -126,6 +130,7 @@
     $('company-count').textContent = String(D.companies.length);
     $('dataset-line').innerHTML = `${D.companies.length} COMPANIES <span>·</span> 2019–2026 <span>·</span> TECH, STREAMING &amp; MEDIA`;
     $('year-slider').value = String(round);
+    $('mobile-year').value = String(round);
     $('year-slider').style.setProperty('--fill', (state.year - 2019) / 7 * 100 + '%');
     $('year-slider').setAttribute('aria-valuetext', whole ? yearLabel(round) + (round === 2026 ? ', includes projections' : '') : `Transition from ${lower} to ${lower + 1}`);
     $('prev-year').disabled = state.year <= 2019; $('next-year').disabled = state.year >= 2026;
@@ -148,11 +153,12 @@
   }
   function drawFrontier(exportSize = null) {
     const svg = $('frontier'), width = exportSize?.width || Math.max(270, $('chart-wrap').clientWidth);
-    const compact = width < 530, height = exportSize?.height || (compact ? 515 : Math.min(670, Math.max(575, width * .73)));
-    const left = compact ? 50 : 62, right = compact ? 17 : 30, top = 14, bottom = 65;
+    const compact = !exportSize && (width < 530 || phoneLayout.matches);
+    const height = exportSize?.height || (compact ? Math.min(470, Math.max(360, Math.round(width * 1.16))) : Math.min(670, Math.max(575, width * .73)));
+    const left = compact ? 41 : 62, right = compact ? 12 : 30, top = compact ? 24 : 14, bottom = compact ? 48 : 65;
     const pw = width - left - right, ph = height - top - bottom;
     const x = v => M.scaleX(v, left, pw), y = v => M.scaleY(v, top, ph);
-    const maxRadius = compact ? 27 : 36;
+    const maxRadius = compact ? 22 : 36;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`); svg.setAttribute('width', width); svg.setAttribute('height', height);
     svg.replaceChildren(el('title', {id:'chart-title'}, `Revenue per employee versus headcount, ${isWhole(state.year) ? yearLabel(state.year) : 'annual transition'}`), el('desc', {id:'chart-description'}, 'Horizontal axis: workforce size, logarithmic scale from 200 to 2.5 million. Vertical axis: revenue per employee, zero to 9 million US dollars. Comcast uses full-time equivalents. Filled bubble area is proportional to revenue; Tubi uses its disclosed revenue floor. Choose a company from the adjacent selector for periods, definitions, and source links.'));
     const g = append(svg, 'g', {'aria-hidden':'true'});
@@ -169,8 +175,9 @@
       const value = decade*k;
       if (value >= M.X_DOMAIN[0] && value <= M.X_DOMAIN[1]) append(g, 'line', {x1:x(value), x2:x(value), y1:y(0)+1, y2:y(0)+4, stroke:'#8b9590', 'stroke-width':.8});
     }
-    append(g, 'text', {x:compact ? 12 : 14, y:top+ph/2, transform:`rotate(-90 ${compact ? 12 : 14} ${top+ph/2})`, 'text-anchor':'middle', fill:'#46575e', 'font-size':compact ? 10 : 11, 'font-weight':650, 'letter-spacing':'.4px'}, 'REVENUE PER EMPLOYEE');
-    append(g, 'text', {x:left+pw/2, y:height-14, 'text-anchor':'middle', fill:'#46575e', 'font-size':compact ? 10 : 11, 'font-weight':650, 'letter-spacing':'.4px'}, 'TOTAL EMPLOYEES · LOG SCALE');
+    if (compact) append(g, 'text', {x:left, y:12, fill:'#46575e', 'font-size':11, 'font-weight':600}, 'Revenue per employee ($)');
+    else append(g, 'text', {x:14, y:top+ph/2, transform:`rotate(-90 14 ${top+ph/2})`, 'text-anchor':'middle', fill:'#46575e', 'font-size':11, 'font-weight':650, 'letter-spacing':'.4px'}, 'REVENUE PER EMPLOYEE');
+    append(g, 'text', {x:left+pw/2, y:height-9, 'text-anchor':'middle', fill:'#46575e', 'font-size':11, 'font-weight':600}, compact ? 'Employees · log scale' : 'TOTAL EMPLOYEES · LOG SCALE');
     const companies = visibleCompanies();
     const points = companies.map(c => M.plottedPoint(c, state.year, state.basis)).filter(Boolean);
     $('chart-empty').hidden = points.length > 0;
@@ -181,7 +188,7 @@
         const rows = M.trailPoints(c, state.year, state.basis);
         for (let i=1;i<rows.length;i++) {
           const a=rows[i-1], b=rows[i];
-          append(trails, 'path', {d:`M${x(a.headcount)},${y(a.rpe)} L${x(b.headcount)},${y(b.rpe)}`, fill:'none', stroke:color(c), 'stroke-opacity':c.id===state.selected ? .55 : .27, 'stroke-width':c.id===state.selected ? 2.2 : 1.8, 'stroke-linejoin':'round', 'stroke-linecap':'round', 'stroke-dasharray':a.kind!=='reported'||b.kind!=='reported' ? '4 4' : null});
+          append(trails, 'path', {d:`M${x(a.headcount)},${y(a.rpe)} L${x(b.headcount)},${y(b.rpe)}`, fill:'none', stroke:color(c), 'stroke-opacity':c.id===state.selected ? .55 : compact ? .14 : .27, 'stroke-width':c.id===state.selected ? 2.2 : compact ? 1.3 : 1.8, 'stroke-linejoin':'round', 'stroke-linecap':'round', 'stroke-dasharray':a.kind!=='reported'||b.kind!=='reported' ? '4 4' : null});
         }
       }
     }
@@ -194,10 +201,10 @@
       const group=append(circles,'g',{'data-company':c.id,class:'company-mark'});
       if(selected) append(group,'circle',{cx:p.cx,cy:p.cy,r:p.radius+5,fill:'none',stroke:fill,'stroke-width':1.1,'stroke-opacity':.6});
       append(group,'circle',{cx:p.cx,cy:p.cy,r:p.radius,fill:p.reference==='ttm'?PAPER:fill,'fill-opacity':p.revenueFloor ? .45 : c.featured ? .94 : .86,stroke:p.reference==='ttm'||p.revenueFloor?fill:PAPER,'stroke-width':p.reference==='ttm'?2.5:p.revenueFloor?1.3:.6,'stroke-dasharray':p.revenueFloor?'2 2':null});
-      append(group,'circle',{cx:p.cx,cy:p.cy,r:Math.max(9,p.radius),fill:'transparent',stroke:'none'});
+      append(group,'circle',{cx:p.cx,cy:p.cy,r:Math.max(compact ? 12 : 9,p.radius),fill:'transparent',stroke:'none'});
       append(group,'title',{},`${c.name}: ${rpeText(p)} per ${employeeUnit(c)==='FTEs'?'FTE':'employee'}; ${p.approximateHeadcount?'approximately ':''}${num.format(Math.round(p.headcount))} ${employeeUnit(c)}; ${p.status}`);
-      group.addEventListener('pointerenter',event=>showTooltip(p,event));
-      group.addEventListener('pointermove',event=>moveTooltip(event));
+      group.addEventListener('pointerenter',event=>{if(event.pointerType!=='touch')showTooltip(p,event);});
+      group.addEventListener('pointermove',event=>{if(event.pointerType!=='touch')moveTooltip(event);});
       group.addEventListener('pointerleave',hideTooltip);
       group.addEventListener('click',()=>{hideTooltip();setCompany(c.id);});
     }
@@ -205,26 +212,38 @@
   }
   function drawLabels(g, points, box) {
     const {width,height,left,right,top,bottom,compact}=box;
-    const candidates = points.filter(p=>p.company.featured || p.company.id===state.selected || points.length<=12)
-      .sort((a,b)=>(b.company.id===state.selected)-(a.company.id===state.selected) || (b.reference==='ttm')-(a.reference==='ttm') || b.rpe-a.rpe);
+    // Phone labels stay close to their own bubble; detail remains available on tap.
+    const priority = ['openai','anthropic','nvidia','amazon','apple','netflix','microsoft','alphabet','block','coinbase','opendoor'];
+    const candidates = points.filter(p=>p.company.featured || p.company.id===state.selected || (!compact && points.length<=12))
+      .sort((a,b)=>(b.company.id===state.selected)-(a.company.id===state.selected) || (b.reference==='ttm')-(a.reference==='ttm') || (compact ? (priority.indexOf(a.company.id)<0?99:priority.indexOf(a.company.id))-(priority.indexOf(b.company.id)<0?99:priority.indexOf(b.company.id)) : b.rpe-a.rpe));
+    const labelLimit = compact ? 6 : Infinity;
     const used=[];
     const intersects=(a,b)=>a.x<b.x+b.w+4 && a.x+a.w+4>b.x && a.y<b.y+b.h+4 && a.y+a.h+4>b.y;
     for(const p of candidates){
+      if (used.length >= labelLimit) break;
       const reference = p.reference && state.year>2025;
       const comparisonLabel=p.comparisonType==='proforma'?' · pro forma':p.comparisonType==='mixed'?' · estimate':p.comparisonType==='carry'?' · FY'+p.sourceYear:'';
       const lines = p.reference==='ttm' ? ['Anthropic >$6.6M','Sep 2026 · S-1 TTM'] : p.reference==='carried' ? ['OpenAI · 2025 estimate','$5.65M · unverified'] : [(p.company.shortName || p.company.name)+comparisonLabel+(employeeUnit(p.company)==='FTEs'?' (FTE)':'')];
-      const fs = compact ? 11 : 12;
-      const w = Math.max(...lines.map(t=>t.length))*fs*.57 + (reference?12:0), hh = lines.length*15+(reference?9:0);
+      if (compact && !reference) lines[0] = p.company.shortName || p.company.name;
+      const fs = 12, font = getComputedStyle(document.body).fontFamily;
+      const measure = text => {
+        const key = `${font}|${fs}|${text}`;
+        if (!labelWidths.has(key)) { labelMeasure.font = `650 ${fs}px ${font}`; labelWidths.set(key, labelMeasure.measureText(text).width); }
+        return labelWidths.get(key);
+      };
+      const w = Math.ceil(Math.max(...lines.map(measure))) + (reference?12:2), hh = lines.length*15+(reference?9:0);
       const gap=Math.max(8,p.radius+5);
       const options=[];
-      for(const dy of [-hh-4,7,-hh/2,-hh-22,27,-hh-42,48,-hh-62,69,-hh-88,95,-hh-115]){
+      const offsets = compact ? [-hh/2, -hh-3, 5, -hh-14, 17] : [-hh-4,7,-hh/2,-hh-22,27,-hh-42,48,-hh-62,69,-hh-88,95,-hh-115];
+      for(const dy of offsets){
         options.push({x:p.cx+gap,y:p.cy+dy,w,h:hh});
         options.push({x:p.cx-gap-w,y:p.cy+dy,w,h:hh});
       }
-      options.push({x:p.cx-w/2,y:p.cy-p.radius-hh-9,w,h:hh});
+      options.push({x:p.cx-w/2,y:p.cy-p.radius-hh-6,w,h:hh});
+      if (compact) options.push({x:p.cx-w/2,y:p.cy+p.radius+6,w,h:hh});
       const coversBubble=o=>points.some(q=>q!==p && Math.hypot(q.cx-Math.max(o.x,Math.min(q.cx,o.x+o.w)),q.cy-Math.max(o.y,Math.min(q.cy,o.y+o.h)))<q.radius+3);
       let choice=options.find(o=>o.x>=left+1 && o.x+o.w<=width-right+3 && o.y>=top && o.y+o.h<=height-bottom-3 && !used.some(u=>intersects(o,u)) && !coversBubble(o));
-      if(!choice){
+      if(!choice && !compact){
         choice=options.find(o=>o.x>=left+1 && o.x+o.w<=width-2 && o.y>=top && o.y+o.h<=height-bottom-2 && !used.some(u=>intersects(o,u)) && !coversBubble(o));
       }
       if(!choice) continue;
@@ -250,8 +269,27 @@
     t.style.left=Math.max(3,Math.min(rect.width-tw-3,x))+'px';t.style.top=Math.max(3,Math.min(rect.height-th-3,y))+'px';
   }
   function hideTooltip(){$('tooltip').hidden=true;}
+  function updateMobileSummary(company, point) {
+    $('mobile-company-name').textContent = company.name;
+    $('mobile-company-rpe').textContent = point ? rpeText(point) : 'No observation';
+    $('mobile-company-metrics').textContent = point ? `${point.revenueFloor ? '>' : ''}${moneyB(point.revenue)} revenue · ${point.approximateHeadcount ? '≈ ' : ''}${num.format(Math.round(point.headcount))} ${employeeUnit(company)}` : `No data for ${Math.floor(state.year)}. Choose another year.`;
+    if (point?.reference === 'ttm') $('mobile-company-metrics').textContent = `${num.format(Math.round(point.headcount))} employees · revenue not encoded`;
+    $('mobile-company-status').textContent = point ? `${point.status}${point.comparison || point.reference ? '' : ' · ' + point.sourceYear}` : '';
+    $('mobile-detail-toggle').setAttribute('aria-expanded', String(mobileDetailsOpen));
+    $('mobile-detail-toggle').textContent = mobileDetailsOpen ? 'Hide details ↑' : 'Details & sources ↓';
+  }
+  function applyPhoneLayout() {
+    // Move the same native selector, not a duplicate, so state and keyboard access stay in sync.
+    const picker = $('company-picker');
+    if (phoneLayout.matches) $('mobile-company-slot').appendChild(picker);
+    else $('desktop-company-slot').appendChild(picker);
+    document.body.classList.toggle('mobile-details-open', mobileDetailsOpen);
+    hideTooltip();
+    render();
+  }
   function renderDetails(){
     const c=companyById.get(state.selected),p=M.plottedPoint(c,state.year,state.basis);
+    updateMobileSummary(c,p);
     $('company-name').textContent=c.name; $('company-color').style.background=color(c); $('company-group').textContent=c.group;
     $('detail-content').hidden=!p; $('detail-empty').hidden=!!p;
     if(!p){
@@ -361,6 +399,15 @@
     finally{button.disabled=false;button.innerHTML='Export PNG <span aria-hidden="true">↓</span>';}
   }
   readURL();
+  $('mobile-year').innerHTML = D.meta.years.map(year => `<option value="${year}">${yearLabel(year)}</option>`).join('');
+  $('mobile-year').addEventListener('change', event => setYear(Number(event.target.value)));
+  $('mobile-detail-toggle').addEventListener('click', () => {
+    mobileDetailsOpen = !mobileDetailsOpen;
+    document.body.classList.toggle('mobile-details-open', mobileDetailsOpen);
+    renderDetails();
+    if (mobileDetailsOpen) $('company-panel').scrollIntoView({behavior:reducedMotion.matches?'instant':'smooth',block:'start'});
+  });
+  phoneLayout.addEventListener('change', applyPhoneLayout);
   $('year-ticks').innerHTML=D.meta.years.map(year=>`<button data-year="${year}" aria-label="Go to ${yearLabel(year)}" aria-pressed="false">${yearLabel(year)}</button>`).join('');
   $('year-ticks').addEventListener('click',event=>{const b=event.target.closest('[data-year]');if(b)setYear(Number(b.dataset.year));});
   document.querySelectorAll('[data-cohort]').forEach(b=>b.addEventListener('click',()=>setCohort(b.dataset.cohort)));
@@ -383,7 +430,7 @@
   document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.playing){stopPlayback();render();saveURL();}});
   new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{drawFrontier();renderDetails();});}).observe($('chart-wrap'));
   document.querySelectorAll('a[href="#reference-note"]').forEach(a=>a.addEventListener('click',()=>{$('reference-note').open=true;}));
-  render();
+  applyPhoneLayout();
   // Read-only access for reproducibility and numerical inspection.
   window.revenuePerEmployee={getState:()=>({...state}),getPoint:(id,year,basis='annual')=>M.plottedPoint(companyById.get(id),year,basis)};
 })();
