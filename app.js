@@ -1,6 +1,12 @@
 (() => {
   'use strict';
-  const D = window.EFFICIENCY_DATA, M = window.EfficiencyModel;
+  const M = window.EfficiencyModel;
+  // Presentation preferences do not change the source observations or downloads.
+  const D = {
+    ...window.EFFICIENCY_DATA,
+    companies: window.EFFICIENCY_DATA.companies.map(c =>
+      c.id === 'tubi' ? { ...c, featured: false, color: '#b6bebb' } : c)
+  };
   const $ = id => document.getElementById(id);
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const PAPER = '#f7f5ef', INK = '#1b292d', MUTED = '#718086', LINE = '#e3e5de';
@@ -115,7 +121,6 @@
     $('year-display').classList.toggle('transition-year', !whole);
     $('year-display').innerHTML = whole ? `${round}${round === 2026 ? '<span>E</span>' : ''}` : `${lower} <span>→</span> ${yearLabel(lower + 1)}`;
     $('year-basis').textContent = !whole ? 'Visual transition · not an observation' : state.basis === 'reference' && round === 2026 ? 'Reference view · mixed observation periods' : round === 2026 ? 'Annual figures + dated comparisons' : 'Annual source observations';
-    $('era-title').textContent = state.cohort === 'Streaming & media' ? 'STREAMING & MEDIA' : state.year < 2020 ? 'BEFORE THE SHIFT' : state.year < 2022 ? 'THE GROWTH YEARS' : state.year < 2024 ? 'THE EFFICIENCY RESET' : 'AI EFFICIENCY ERA';
     const n = visibleCompanies().filter(c => M.plottedPoint(c, state.year, state.basis)).length;
     $('chart-subtitle').textContent = `${n} ${n === 1 ? 'company' : 'companies'} in view · ${state.year > 2025 ? 'check each observation’s period' : 'annual source data'}`;
     $('company-count').textContent = String(D.companies.length);
